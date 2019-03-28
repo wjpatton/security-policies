@@ -172,7 +172,7 @@ resource "tfe_sentinel_policy" "aws-restrict-instance-type-prod" {
   description  = "Limit AWS instances to approved list (for prod infrastructure)"
   organization = "${var.tfe_organization}"
   policy       = "${file("./aws-restrict-instance-type-prod.sentinel")}"
-  enforce_mode = "soft-mandatory"
+  enforce_mode = "hard-mandatory"
 }
 
 resource "tfe_sentinel_policy" "aws-restrict-instance-type-default" {
