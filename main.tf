@@ -42,6 +42,7 @@ resource "tfe_policy_set" "global" {
     "${tfe_sentinel_policy.passthrough.id}",
     "${tfe_sentinel_policy.aws-block-allow-all-cidr.id}",
     "${tfe_sentinel_policy.aws-restrict-instance-type-default.id}",
+    "${tfe_sentinel_policy.aws-vpc-must-be-pmr-approved.id}",
   ]
 }
 
@@ -180,6 +181,14 @@ resource "tfe_sentinel_policy" "aws-restrict-instance-type-default" {
   description  = "Limit AWS instances to approved list"
   organization = "${var.tfe_organization}"
   policy       = "${file("./aws-restrict-instance-type-default.sentinel")}"
+  enforce_mode = "soft-mandatory"
+}
+
+resource "tfe_sentinel_policy" "aws-vpc-must-be-pmr-approved" {
+  name         = "aws-vpc-must-be-pmr-approved"
+  description  = "Limit AWS VPC creation to pre-approved modules"
+  organization = "${var.tfe_organization}"
+  policy       = "${file("./aws-vpc-must-be-pmr-approved.sentinel")}"
   enforce_mode = "soft-mandatory"
 }
 
