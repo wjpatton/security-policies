@@ -31,7 +31,7 @@ vpcs_in_modules_from_pmr = rule {
       # This would have worked, but strings.join() does not seem supported in TFE
       # even though it works with Sentinel Simulator and is documented
       # at https://docs.hashicorp.com/sentinel/imports/strings#strings-join-a-sep-
-      print("module source: ", strings.join(["tfconfig.modules", strings.join(path, "."), "source"], "."))
+      #print("module source: ", strings.join(["tfconfig.modules", strings.join(path, "."), "source"], "."))
       print("module path: ", path[length(path)-1] else "root") and
       print("module source: ", tfconfig.modules[path[0]].source else "none") and
       (length(path) == 0 or
