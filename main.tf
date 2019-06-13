@@ -224,3 +224,5 @@ resource "tfe_sentinel_policy" "prod-change-window-hours" {
   policy       = "${file("./change-window-hours.sentinel")}"
   enforce_mode = "hard-mandatory"
 }
+
+#update for autorun
