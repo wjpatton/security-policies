@@ -45,6 +45,7 @@ resource "tfe_policy_set" "global" {
     "${tfe_sentinel_policy.aws-vpc-must-be-pmr-approved.id}",
     "${tfe_sentinel_policy.limit-cost-by-workspace-type.id}",
     "${tfe_sentinel_policy.limit-proposed-monthly-cost.id}",
+    "${tfe_sentinel_policy.restrict-cost-and-percentage-increase.id",
   ]
 }
 
@@ -242,6 +243,14 @@ resource "tfe_sentinel_policy" "limit-proposed-monthly-cost" {
   description  = "Limit Proposed Monthly Cost"
   organization = "${var.tfe_organization}"
   policy       = "${file("./limit-proposed-monthly-cost.sentinel")}"
+  enforce_mode = "soft-mandatory"
+}
+
+resource "tfe_sentinel_policy" "restrict-cost-and-percentage-increase" {
+  name         = "restrict-cost-and-percentage-increase.sentinel"
+  description  = "Restrict Cost and Percentage Increase"
+  organization = "${var.tfe_organization}"
+  policy       = "${file("./restrict-cost-and-percentage-increase.sentinel")}"
   enforce_mode = "soft-mandatory"
 }
 
