@@ -50,8 +50,8 @@ restrict_cost_and_percentage_increase = func(limit, max_percent) {
 }
 
 ##### Parameters #####
-limit = decimal.new(1000)
-max_percent = decimal.new(10.0)
+limit = decimal.new(10)
+max_percent = decimal.new(5.0)
 
 ##### Rules #####
 cost_validated = restrict_cost_and_percentage_increase(limit, max_percent)
