@@ -45,7 +45,7 @@ resource "tfe_policy_set" "global" {
     "${tfe_sentinel_policy.aws-vpc-must-be-pmr-approved.id}",
     "${tfe_sentinel_policy.limit-cost-by-workspace-type.id}",
     "${tfe_sentinel_policy.limit-proposed-monthly-cost.id}",
-    "${tfe_sentinel_policy.restrict-cost-and-percentage-increase.id",
+    "${tfe_sentinel_policy.restrict-cost-and-percentage-increase.id}",
   ]
 }
 
