@@ -225,4 +225,15 @@ resource "tfe_sentinel_policy" "prod-change-window-hours" {
   enforce_mode = "hard-mandatory"
 }
 
+# Cost Estimation policies:
+
+resource "tfe_sentinel_policy" "limit-cost-by-workspace-type" {
+  name         = "limit-cost-by-workspace-type.sentinel"
+  description  = "Limit Workspace Cost by Type"
+  organization = "${var.tfe_organization}"
+  policy       = "${file("./limit-cost-by-workspace-type.sentinel")}"
+  enforce_mode = "soft-mandatory"
+}
+
+
 #update for autorun again
