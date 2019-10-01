@@ -17,11 +17,11 @@ limit_cost_by_workspace_type = func(limits) {
   workspace_name = tfrun.workspace.name
 
   # Determine limit for current workspace
-  if workspace_name matches "(.*)-dev$" {
+  if workspace_name matches "(.*)-dev*$" {
     limit = limits["dev"]
-  } else if workspace_name matches "(.*)-qa$" {
+  } else if workspace_name matches "(.*)-qa*$" {
     limit = limits["qa"]
-  } else if workspace_name matches "(.*)-prod$" {
+  } else if workspace_name matches "(.*)-prod*$" {
     limit = limits["prod"]
   } else {
     limit = limits["other"]
