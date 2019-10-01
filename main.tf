@@ -44,6 +44,7 @@ resource "tfe_policy_set" "global" {
     "${tfe_sentinel_policy.aws-restrict-instance-type-default.id}",
     "${tfe_sentinel_policy.aws-vpc-must-be-pmr-approved.id}",
     "${tfe_sentinel_policy.limit-cost-by-workspace-type.id}",
+    "${tfe_sentinel_policy.limit-proposed-monthly-cost.id}",
   ]
 }
 
@@ -233,6 +234,14 @@ resource "tfe_sentinel_policy" "limit-cost-by-workspace-type" {
   description  = "Limit Workspace Cost by Type"
   organization = "${var.tfe_organization}"
   policy       = "${file("./limit-cost-by-workspace-type.sentinel")}"
+  enforce_mode = "soft-mandatory"
+}
+
+resource "tfe_sentinel_policy" "limit-proposed-monthly-cost" {
+  name         = "limit-proposed-monthly-cost.sentinel"
+  description  = "Limit Proposed Monthly Cost"
+  organization = "${var.tfe_organization}"
+  policy       = "${file("./limit-proposed-monthly-cost.sentinel")}"
   enforce_mode = "soft-mandatory"
 }
 
