@@ -23,13 +23,13 @@ provider "tfe" {
   version  = "~> 0.6"
 }
 
-data "tfe_workspace_ids" "all" {
+data "workspace_ids" "all" {
   names        = ["*"]
   organization = "${var.tfe_organization}"
 }
 
 locals {
-  workspaces = "${data.tfe_workspace_ids.all.ids}" # map of names to IDs
+  workspaces = "${data.workspace_ids.all.ids}" # map of names to IDs
 }
 
 resource "tfe_policy_set" "global" {
